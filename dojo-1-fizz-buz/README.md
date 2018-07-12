@@ -6,6 +6,7 @@ print "FizzBuzz".
 
 Sample output:
 
+````
 1
 2
 Fizz
@@ -27,4 +28,4 @@ Fizz
 19
 Buzz
 ... etc up to 100
-
+````
