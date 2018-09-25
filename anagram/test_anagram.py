@@ -31,10 +31,10 @@ class AnagramTests(unittest.TestCase):
         output = anagrams(word)
         self.assertNotIn(word, output)
 
-    def test_that_some_word_has_two_words_anagram(self):
+    def test_that_some_words_have_two_word_anagram(self):
         word = 'output'
-        output = anagrams(word)
-        self.assertIn(True, ((' ' in result) for result in output), 'jopa')
+        output = anagrams(word, n_words=2)
+        self.assertIn(True, ((' ' in result) for result in output))
 
 if __name__ == '__main__':
     unittest.main()
