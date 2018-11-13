@@ -24,5 +24,15 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertTrue(parsed_args['l'])
 
+    def test_that_fails_in_case_arg_not_in_schema(self):
+        """If there is an -l argument, but it is not in schema then fail."""
+        # given
+        arg_list = ['-l']
+        schema = {}
+        # when
+        with self.assertRaises(ValueError):
+        # then
+            parse_args(schema, arg_list)
+
 if __name__ == '__main__':
     unittest.main()
