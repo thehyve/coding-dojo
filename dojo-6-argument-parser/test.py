@@ -28,11 +28,21 @@ class ArgumentParserCase(unittest.TestCase):
         """If there is an -l argument, but it is not in schema then fail."""
         # given
         arg_list = ['-l']
-        schema = {}
+        schema = {'p':'flag'}
         # when
         with self.assertRaises(ValueError):
         # then
             parse_args(schema, arg_list)
+
+    def test_that_other_letter_works(self):
+        """Parser has to work for arbitrary flag letter."""
+        # given
+        arg_list = ['-p']
+        schema = {'p':'flag'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertTrue(r['p'])
 
 if __name__ == '__main__':
     unittest.main()
