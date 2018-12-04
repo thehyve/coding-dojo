@@ -4,7 +4,7 @@ def parse_args(schema, args):
             for arg
             in args
             if arg.startswith('-')):
-        raise ValueError
+        raise ValueError()
     result = {}
     for arg, arg_type in schema.items():
         if arg_type == 'flag':
