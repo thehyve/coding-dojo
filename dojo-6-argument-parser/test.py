@@ -53,5 +53,14 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertTrue(r['p'])
 
+    def test_that_integer_param_is_parsed_to_int(self):
+        # given
+        arg_list = ['-p', '8080']
+        schema = {'p': 'int'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertEqual(r['p'], 8080)
+
 if __name__ == '__main__':
     unittest.main()
