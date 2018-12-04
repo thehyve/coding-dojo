@@ -38,9 +38,9 @@ class ArgumentParserCase(unittest.TestCase):
         # given
         arg_list = ['-l']
         schema = {'p':'flag'}
-        # when
-        with self.assertRaises(ValueError):
         # then
+        with self.assertRaises(ValueError):
+        # when
             parse_args(schema, arg_list)
 
     def test_that_other_letter_works(self):
