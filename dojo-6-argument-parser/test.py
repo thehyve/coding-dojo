@@ -106,9 +106,14 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertEqual(r['s'], 'abc')
 
-    @unittest.skip('later baby')
     def test_not_provided_str_arg_defaults_to_empty_string(self):
-        pass
+        # given
+        arg_list = []
+        schema = {'s': 'str'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertEqual(r['s'], '')
 
 if __name__ == '__main__':
     unittest.main()
