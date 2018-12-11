@@ -71,5 +71,14 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertEqual(r['p'], 0)
 
+    def test_that_invalid_integer_raises_value_error(self):
+        # given
+        arg_list = ['-p', 'pi']
+        schema = {'p': 'int'}
+        # when, then
+        with self.assertRaises(ValueError):
+            _ = parse_args(schema, arg_list)
+
+
 if __name__ == '__main__':
     unittest.main()

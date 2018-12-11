@@ -13,7 +13,8 @@ def parse_args(schema, args):
         elif arg_type == 'int':
             try:
                 arg_index = args.index(darg)
-                result[arg] = int(args[arg_index+1])
             except ValueError:
                 result[arg] = 0
+            else:
+                result[arg] = int(args[arg_index+1])
     return result
