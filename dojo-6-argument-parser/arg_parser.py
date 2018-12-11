@@ -7,12 +7,13 @@ def parse_args(schema, args):
         raise ValueError()
     result = {}
     for arg, arg_type in schema.items():
+        darg = '-' + arg
         if arg_type == 'flag':
-            result[arg] = ('-' + arg) in args
+            result[arg] = darg in args
         elif arg_type == 'int':
-            arg_index = args.index('-' + arg)
-            if arg_index == -1:
-                result[arg] = 0
-            else:
+            try:
+                arg_index = args.index(darg)
                 result[arg] = int(args[arg_index+1])
+            except ValueError:
+                result[arg] = 0
     return result
