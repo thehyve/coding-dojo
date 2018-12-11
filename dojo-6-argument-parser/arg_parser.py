@@ -21,4 +21,12 @@ def parse_args(schema, args):
                 result[arg] = 0
             else:
                 result[arg] = int(args[arg_index+1])
+        elif arg_type == 'str':
+            try:
+                arg_index = args.index(darg)
+            except ValueError:
+                result[arg] = ''
+            else:
+                result[arg] = args[arg_index+1]
+
     return result
