@@ -3,7 +3,8 @@ def parse_args(schema, args):
     if any(arg.lstrip('-') not in schema
             for arg
             in args
-            if arg.startswith('-')):
+            if arg.startswith('-') and not arg[1:].isdigit()
+            ):
         raise ValueError()
     result = {}
     for arg, arg_type in schema.items():

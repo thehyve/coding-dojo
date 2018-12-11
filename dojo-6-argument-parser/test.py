@@ -79,6 +79,15 @@ class ArgumentParserCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             _ = parse_args(schema, arg_list)
 
+    def test_that_negative_ints_are_parsed_as_ints(self):
+        # given
+        arg_list = ['-p', '-3']
+        schema = {'p': 'int'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertEqual(r['p'], -3)
+
 
 if __name__ == '__main__':
     unittest.main()
