@@ -133,5 +133,14 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertEqual(r['1'], 2)
 
+    def test_that_negative_num_args_have_digits_as_name(self):
+        # given
+        arg_list = ['-1', '-12']
+        schema = {'1': 'int'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertEqual(r['1'], -12)
+
 if __name__ == '__main__':
     unittest.main()
