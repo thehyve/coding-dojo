@@ -124,5 +124,14 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertTrue(r['1'])
 
+    def test_that_arguments_have_digit_as_name_and_value(self):
+        # given
+        arg_list = ['-1', '2']
+        schema = {'1': 'int'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertEqual(r['1'], 2)
+
 if __name__ == '__main__':
     unittest.main()
