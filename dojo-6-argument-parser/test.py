@@ -142,5 +142,16 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertEqual(r['1'], -12)
 
+    def test_that_multiple_flags_can_have_digits_as_names(self):
+        # given
+        arg_list = ['-1', '-2']
+        schema = {'1': 'flag', '2': 'flag'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertTrue(r['1'])
+        self.assertTrue(r['2'])
+
+
 if __name__ == '__main__':
     unittest.main()
