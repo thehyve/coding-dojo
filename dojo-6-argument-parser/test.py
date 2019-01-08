@@ -152,6 +152,14 @@ class ArgumentParserCase(unittest.TestCase):
         self.assertTrue(r['1'])
         self.assertTrue(r['2'])
 
+    def test_that_schema_validation_works_with_numeric_arg_names(self):
+        # given
+        arg_list = ['-1', '-2', '-3']
+        schema = {'1': 'flag', '2': 'flag'}
+        # when
+        # then
+        with self.assertRaises(ValueError):
+            _ = parse_args(schema, arg_list)
 
 if __name__ == '__main__':
     unittest.main()
