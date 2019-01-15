@@ -1,9 +1,17 @@
 def _has_unknown_opt(args, schema):
-    return any(arg.lstrip('-') not in schema
-            for arg
-            in args
-            if arg.startswith('-') and not arg[1:].isdigit()
-            )
+    skip = False
+    for option in args:
+        if skip:
+            continue
+        if option[0] != '-':
+            return True
+        option = option.lstrip('-')
+        if option not in schema:
+            return True
+        option_type = schema[option]
+        skip = option_type != 'flag'
+
+    return False
 
 def parse_args(schema, args):
     """Parse the arguments according to the schema."""
