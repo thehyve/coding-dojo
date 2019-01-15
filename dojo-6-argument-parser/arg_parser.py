@@ -1,16 +1,14 @@
 def _has_unknown_opt(args, schema):
-    skip = False
-    for option in args:
-        if skip:
-            skip = False
+    expecting_value = False
+    for argument in args:
+        if expecting_value:
+            expecting_value = False
             continue
-        if option[0] != '-':
+        argument = argument.lstrip('-')
+        if argument not in schema:
             return True
-        option = option.lstrip('-')
-        if option not in schema:
-            return True
-        option_type = schema[option]
-        skip = option_type != 'flag'
+        option_type = schema[argument]
+        expecting_value = option_type != 'flag'
 
     return False
 
