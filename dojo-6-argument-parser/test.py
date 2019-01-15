@@ -161,5 +161,13 @@ class ArgumentParserCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             _ = parse_args(schema, arg_list)
 
+    def test_that_unknown_options_are_detected_after_options_that_take_arguments(self):
+        # given
+        arg_list = ['-p', '3', '-l']
+        schema = {'p': 'int'}
+        # when, then
+        with self.assertRaises(ValueError):
+            _ = parse_args(schema, arg_list)
+
 if __name__ == '__main__':
     unittest.main()

@@ -2,6 +2,7 @@ def _has_unknown_opt(args, schema):
     skip = False
     for option in args:
         if skip:
+            skip = False
             continue
         if option[0] != '-':
             return True
