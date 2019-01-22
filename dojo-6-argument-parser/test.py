@@ -169,5 +169,14 @@ class ArgumentParserCase(unittest.TestCase):
         with self.assertRaises(ValueError):
             _ = parse_args(schema, arg_list)
 
+    def test_that_positional_args_are_collected(self):
+        # given
+        arg_list = ['1']
+        schema = {}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertEqual(r.positional, ['1'])
+
 if __name__ == '__main__':
     unittest.main()
