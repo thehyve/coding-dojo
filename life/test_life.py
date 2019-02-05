@@ -11,6 +11,11 @@ class LifeTestCase(unittest.TestCase):
         new_gen = live(grid)
         self.assertEqual(new_gen, ['.'])
 
+    def test_that_living_cell_without_neighbours_dies(self):
+        grid = ['*']
+        new_gen = live(grid)
+        self.assertEqual(new_gen, ['.'])
+
 
 if __name__ == '__main__':
     unittest.main()
