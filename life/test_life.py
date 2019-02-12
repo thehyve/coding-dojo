@@ -26,7 +26,11 @@ class LifeTestCase(unittest.TestCase):
         self.assertNextGen(['*.'], ['..'])
 
     def test_that_cell_with_dead_floor_cell_dies(self):
-        self.assertNextGen(['*', '.'], ['.', '.'])
+        self.assertNextGen([
+            '*',
+            '.'], [
+            '.',
+            '.'])
 
 if __name__ == '__main__':
     unittest.main()
