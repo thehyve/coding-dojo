@@ -37,5 +37,8 @@ class LifeTestCase(unittest.TestCase):
     def test_that_middle_cell_survives_from_three_live(self):
         self.assertNextGen(['***'], ['.*.'])
 
+    def test_that_two_neighbour_cell_doesnt_come_to_life(self):
+        self.assertNextGen(['*.*'], ['...'])
+
 if __name__ == '__main__':
     unittest.main()

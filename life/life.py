@@ -8,7 +8,7 @@ def live(grid):
             if on_the_edge(index, floor):
                 new_floor += '.'
             else:
-                new_floor += '*'
+                new_floor += neighbor
         new_gen.append(new_floor)
     return new_gen
 
