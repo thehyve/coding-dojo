@@ -5,7 +5,10 @@ def live(grid):
     for floor in grid:
         new_floor = ''
         for index, neighbor in enumerate(floor):
-            new_floor += '.' if on_the_edge(index, floor) else '*'
+            if on_the_edge(index, floor):
+                new_floor += '.'
+            else:
+                new_floor += '*'
         new_gen.append(new_floor)
     return new_gen
 
