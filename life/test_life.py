@@ -25,12 +25,14 @@ class LifeTestCase(unittest.TestCase):
     def test_that_live_cell_next_to_dead_cell_dies(self):
         self.assertNextGen(['*.'], ['..'])
 
-    def test_that_cell_with_dead_floor_cell_dies(self):
+    def test_that_cell_with_dead_downstairs_dies(self):
         self.assertNextGen([
             '*',
-            '.'], [
+            '.'
+        ], [
             '.',
-            '.'])
+            '.'
+        ])
 
     def test_that_middle_cell_survives_from_three_live(self):
         self.assertNextGen(['***'], ['.*.'])
