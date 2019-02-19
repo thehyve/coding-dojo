@@ -2,26 +2,22 @@ from contextlib import suppress
 from collections import UserDict
 
 
-def _has_unknown_opt(args, schema):
+def parse_args(schema, args):
+    """Parse the arguments according to the schema."""
     expecting_value = False
-    for argument in args:
+    for potential_opt in args:
         if expecting_value:
             expecting_value = False
             continue
-        if not argument.startswith('-'):
+        if not potential_opt.startswith('-'):
             continue
-        argument = argument.lstrip('-')
-        if argument not in schema:
-            return True
-        option_type = schema[argument]
+        potential_opt = potential_opt.lstrip('-')
+        if potential_opt not in schema:
+            raise ValueError()
+        option_type = schema[potential_opt]
         expecting_value = option_type != 'flag'
-
-    return False
-
-def parse_args(schema, args):
-    """Parse the arguments according to the schema."""
-    if _has_unknown_opt(args, schema):
-        raise ValueError()
+# TODO: incorporate functionality below into
+# refactor above
     parsed_opts = {}
     # make a list we can mutate internally
     unrecognised_args = list(args)
@@ -45,6 +41,8 @@ def parse_args(schema, args):
                 parsed_opts[arg] = ''
             else:
                 parsed_opts[arg] = args[arg_index+1]
+# TODO: incorporate logic above into refactoring
+# above that
 
     # take all remaining arguments as positionals
     output = UserDict(parsed_opts)
