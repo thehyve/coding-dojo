@@ -1,4 +1,5 @@
 from contextlib import suppress
+from collections import UserDict
 
 
 def _has_unknown_opt(args, schema):
@@ -21,7 +22,7 @@ def parse_args(schema, args):
     """Parse the arguments according to the schema."""
     if _has_unknown_opt(args, schema):
         raise ValueError()
-    result = {}
+    parsed_opts = {}
     # make a list we can mutate internally
     unrecognised_args = list(args)
     for arg, arg_type in schema.items():
@@ -29,23 +30,24 @@ def parse_args(schema, args):
         with suppress(ValueError):
             unrecognised_args.remove(darg)
         if arg_type == 'flag':
-            result[arg] = darg in args
+            parsed_opts[arg] = darg in args
         elif arg_type == 'int':
             try:
                 arg_index = args.index(darg)
             except ValueError:
-                result[arg] = 0
+                parsed_opts[arg] = 0
             else:
-                result[arg] = int(args[arg_index+1])
+                parsed_opts[arg] = int(args[arg_index+1])
         elif arg_type == 'str':
             try:
                 arg_index = args.index(darg)
             except ValueError:
-                result[arg] = ''
+                parsed_opts[arg] = ''
             else:
-                result[arg] = args[arg_index+1]
+                parsed_opts[arg] = args[arg_index+1]
 
     # take all remaining arguments as positionals
-    result.positional = unrecognised_args
+    output = UserDict(parsed_opts)
+    output.positional = unrecognised_args
 
-    return result
+    return output
