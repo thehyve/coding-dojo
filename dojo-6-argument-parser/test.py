@@ -178,5 +178,23 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertEqual(r.positional, ['1'])
 
+    def test_that_positional_args_that_follow_a_flag_are_collected(self):
+        # given
+        arg_list = ['-s', '1']
+        schema = {'s': 'flag'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertEqual(r.positional, ['1'])
+
+    def test_that_a_flag_followed_by_a_positional_is_collected(self):
+        # given
+        arg_list = ['-s', '1']
+        schema = {'s': 'flag'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertTrue(r['s'])
+
 if __name__ == '__main__':
     unittest.main()
