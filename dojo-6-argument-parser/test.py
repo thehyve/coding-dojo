@@ -196,5 +196,15 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertTrue(r['s'])
 
+    def test_that_a_positional_that_follows_int_arg_is_collected(self):
+        # given
+        arg_list = ['-i', '2', '1']
+        schema = {'i': 'int'}
+        # when
+        r = parse_args(schema, arg_list)
+        # then
+        self.assertEqual(r.positional, ['1'])
+
+
 if __name__ == '__main__':
     unittest.main()
