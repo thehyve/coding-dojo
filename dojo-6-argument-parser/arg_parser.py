@@ -8,6 +8,10 @@ DEFAULT_VALUES_BY_TYPE = {
     'int': 0,
 }
 
+VALUE_PARSERS_BY_TYPE = {
+    'str': lambda x: x,
+    'int': int,
+}
 
 def parse_args(schema, args):
     """Parse the arguments according to the schema."""
@@ -22,7 +26,8 @@ def parse_args(schema, args):
     expecting_value_for = None
     for potential_opt in args:
         if expecting_value_for:
-            opt_name, parse_value = expecting_value_for
+            opt_name, opt_type = expecting_value_for
+            parse_value = VALUE_PARSERS_BY_TYPE[opt_type]
             parsed_opts[opt_name] = parse_value(potential_opt)
             expecting_value_for = None
             continue
@@ -35,15 +40,8 @@ def parse_args(schema, args):
         option_type = schema[potential_opt]
         if option_type == 'flag':
             parsed_opts[potential_opt] = True
-        elif option_type == 'str':
-            expecting_value_for = (
-                potential_opt,
-                lambda x: x
-            )
-        elif option_type == 'int':
-            expecting_value_for = (potential_opt, int)
         else:
-            expecting_value_for = option_type != 'flag'
+            expecting_value_for = potential_opt, option_type
     # take all remaining arguments as positionals
     output = UserDict(parsed_opts)
     output.positional = positionals
