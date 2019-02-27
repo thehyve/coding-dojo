@@ -5,6 +5,7 @@ from collections import UserDict
 DEFAULT_VALUES_BY_TYPE = {
     'flag': False,
     'str': '',
+    'int': 0,
 }
 
 
@@ -21,7 +22,8 @@ def parse_args(schema, args):
     expecting_value_for = None
     for potential_opt in args:
         if expecting_value_for:
-            parsed_opts[expecting_value_for] = potential_opt
+            opt_name, parse_value = expecting_value_for
+            parsed_opts[opt_name] = parse_value(potential_opt)
             expecting_value_for = None
             continue
         if not potential_opt.startswith('-'):
@@ -34,24 +36,14 @@ def parse_args(schema, args):
         if option_type == 'flag':
             parsed_opts[potential_opt] = True
         elif option_type == 'str':
-            expecting_value_for = potential_opt
+            expecting_value_for = (
+                potential_opt,
+                lambda x: x
+            )
+        elif option_type == 'int':
+            expecting_value_for = (potential_opt, int)
         else:
             expecting_value_for = option_type != 'flag'
-# TODO: incorporate functionality below into
-# refactor above
-    # make a list we can mutate internally
-    for arg, arg_type in schema.items():
-        darg = '-' + arg
-        if arg_type == 'int':
-            try:
-                arg_index = args.index(darg)
-            except ValueError:
-                parsed_opts[arg] = 0
-            else:
-                parsed_opts[arg] = int(args[arg_index+1])
-# TODO: incorporate logic above into refactoring
-# above that
-
     # take all remaining arguments as positionals
     output = UserDict(parsed_opts)
     output.positional = positionals
