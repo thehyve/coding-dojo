@@ -2,19 +2,27 @@ from contextlib import suppress
 from collections import UserDict
 
 
+DEFAULT_VALUES_BY_TYPE = {
+    'flag': False,
+    'str': '',
+}
+
+
 def parse_args(schema, args):
     """Parse the arguments according to the schema."""
-    expecting_value = False
+    # assume opts for values not yet encountered
     parsed_opts = {
-        flag: False 
-        for flag, opt_type 
-        in schema.items() 
-        if opt_type == 'flag'}
+        # TODO Properly handle unsupported opt types
+        opt: DEFAULT_VALUES_BY_TYPE.get(opt_type, None)
+        for opt, opt_type
+        in schema.items()
+    }
     positionals = []
+    expecting_value_for = None
     for potential_opt in args:
-        if expecting_value:
-            # TODO Handle argument
-            expecting_value = False
+        if expecting_value_for:
+            parsed_opts[expecting_value_for] = potential_opt
+            expecting_value_for = None
             continue
         if not potential_opt.startswith('-'):
             positionals += potential_opt
@@ -25,7 +33,10 @@ def parse_args(schema, args):
         option_type = schema[potential_opt]
         if option_type == 'flag':
             parsed_opts[potential_opt] = True
-        expecting_value = option_type != 'flag'
+        elif option_type == 'str':
+            expecting_value_for = potential_opt
+        else:
+            expecting_value_for = option_type != 'flag'
 # TODO: incorporate functionality below into
 # refactor above
     # make a list we can mutate internally
@@ -38,13 +49,6 @@ def parse_args(schema, args):
                 parsed_opts[arg] = 0
             else:
                 parsed_opts[arg] = int(args[arg_index+1])
-        elif arg_type == 'str':
-            try:
-                arg_index = args.index(darg)
-            except ValueError:
-                parsed_opts[arg] = ''
-            else:
-                parsed_opts[arg] = args[arg_index+1]
 # TODO: incorporate logic above into refactoring
 # above that
 
