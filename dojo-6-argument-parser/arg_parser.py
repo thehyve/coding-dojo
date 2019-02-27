@@ -5,29 +5,33 @@ from collections import UserDict
 def parse_args(schema, args):
     """Parse the arguments according to the schema."""
     expecting_value = False
+    parsed_opts = {
+        flag: False 
+        for flag, opt_type 
+        in schema.items() 
+        if opt_type == 'flag'}
+    positionals = []
     for potential_opt in args:
         if expecting_value:
+            # TODO Handle argument
             expecting_value = False
             continue
         if not potential_opt.startswith('-'):
+            positionals += potential_opt
             continue
         potential_opt = potential_opt.lstrip('-')
         if potential_opt not in schema:
             raise ValueError()
         option_type = schema[potential_opt]
+        if option_type == 'flag':
+            parsed_opts[potential_opt] = True
         expecting_value = option_type != 'flag'
 # TODO: incorporate functionality below into
 # refactor above
-    parsed_opts = {}
     # make a list we can mutate internally
-    unrecognised_args = list(args)
     for arg, arg_type in schema.items():
         darg = '-' + arg
-        with suppress(ValueError):
-            unrecognised_args.remove(darg)
-        if arg_type == 'flag':
-            parsed_opts[arg] = darg in args
-        elif arg_type == 'int':
+        if arg_type == 'int':
             try:
                 arg_index = args.index(darg)
             except ValueError:
@@ -46,6 +50,6 @@ def parse_args(schema, args):
 
     # take all remaining arguments as positionals
     output = UserDict(parsed_opts)
-    output.positional = unrecognised_args
+    output.positional = positionals
 
     return output
