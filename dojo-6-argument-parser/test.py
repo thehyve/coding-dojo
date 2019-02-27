@@ -196,7 +196,6 @@ class ArgumentParserCase(unittest.TestCase):
         # then
         self.assertTrue(r['s'])
 
-    @unittest.skip('fix me')
     def test_that_a_positional_that_follows_int_arg_is_collected(self):
         # given
         arg_list = ['-i', '2', '1']
