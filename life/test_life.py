@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import unittest
-from life import live
+from life import live, live_neighbors
 
 
 class LifeTestCase(unittest.TestCase):
@@ -39,6 +39,43 @@ class LifeTestCase(unittest.TestCase):
 
     def test_that_two_neighbour_cell_doesnt_come_to_life(self):
         self.assertNextGen(['*.*'], ['...'])
+
+    def test_that_cell_without_neighbors_has_no_live_neighbors(self):
+        self.assertEqual(
+            live_neighbors(['.'], 0, 0),
+            0)
+
+    def test_that_cell_with_live_neighbor_has_live_neighbor(self):
+        self.assertEqual(
+            live_neighbors(['.*'], 0, 0),
+            1)
+
+    @unittest.skip('later')
+    def test_that_middle_cell_of_three_living_floors_lives(self):
+        self.assertNextGen(
+            [
+                '*',
+                '*',
+                '*'
+            ],
+            [
+                '.',
+                '*',
+                '.'
+            ]
+
+        )
+
+    @unittest.skip('Implement after the less-mature step above')
+    def test_that_corner_cell_with_two_live_neighbors_lives(self):
+        self.assertNextGen([
+            '**',
+            '*.'
+        ], [
+            '**',
+            '**'
+        ])
+
 
 if __name__ == '__main__':
     unittest.main()
