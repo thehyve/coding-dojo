@@ -15,5 +15,9 @@ class CodeCrackerTestCase(unittest.TestCase):
         encrypted_msg = encrypt('a b c d e f g h i j k l m n o p q r s t u v w x y z')
         self.assertEqual(encrypted_msg, '! ) " ( £ * % & > < @ a b c d e f g h i j k l m n o')
 
+    def test_pangram_encrypt_decrypt(self):
+        msg = decrypt(encrypt('waltz bad nymph for quick jigs vex'))
+        self.assertEqual(msg, 'waltz bad nymph for quick jigs vex')
+
 if __name__ == '__main__':
     unittest.main()
