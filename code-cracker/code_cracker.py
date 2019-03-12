@@ -1,2 +1,32 @@
 def decrypt(msg):
-    return 'a b c d e f g h i j k l m n o p q r s t u v w x y z'
+    decryption_key = {
+        '!': 'a',
+        ')': 'b',
+        '"': 'c',
+        '(': 'd',
+        '£': 'e',
+        '*': 'f',
+        '%': 'g',
+        '&': 'h',
+        '>': 'i',
+        '<': 'j',
+        '@': 'k',
+        'a': 'l',
+        'b': 'm',
+        'c': 'n',
+        'd': 'o',
+        'e': 'p',
+        'f': 'q',
+        'g': 'r',
+        'h': 's',
+        'i': 't',
+        'j': 'u',
+        'k': 'v',
+        'l': 'w',
+        'm': 'x',
+        'n': 'y',
+        'o': 'z',
+        ' ': ' ',
+    }
+
+    return ''.join(map(lambda s: decryption_key[s], msg))
