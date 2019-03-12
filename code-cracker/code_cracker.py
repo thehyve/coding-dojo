@@ -29,9 +29,12 @@ decryption_key = {
 }
 
 def decrypt(msg):
-    return ''.join(map(lambda s: decryption_key[s], msg))
+    return translate(msg, decryption_key)
 
 encryption_key = {v: k for k, v in decryption_key.items()}
 
 def encrypt(msg):
-    return ''.join(map(lambda s: encryption_key[s], msg))
+    return translate(msg, encryption_key)
+
+def translate(msg, key):
+    return ''.join(map(lambda s: key[s], msg))
