@@ -3,6 +3,8 @@
 import unittest
 from fbq import compute
 
+class ComputingBasicNumbers(unittest
+
 class FooBarQixTestCase(unittest.TestCase):
 
     def assertResultsIn(self, arg, expected):
@@ -38,6 +40,9 @@ class FooBarQixTestCase(unittest.TestCase):
 
     def test_that_passing_ten_results_in_Bar(self):
         self.assertResultsIn('10', 'Bar')
+
+    def test_that_passing(self):
+        self.assertResultsIn('11', None)
 
 
 if __name__ == '__main__':
