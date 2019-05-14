@@ -6,6 +6,7 @@ def compute(arg):
         '3': 'FooFoo',
         '5': 'BarBar',
         '7': 'QixQix',
+        '10': 'Bar'
     }
     with suppress(KeyError):
         return special_cases[arg]

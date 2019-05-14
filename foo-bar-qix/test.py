@@ -36,5 +36,9 @@ class FooBarQixTestCase(unittest.TestCase):
     def test_that_passing_nine_results_in_Foo(self):
         self.assertResultsIn('9', 'Foo')
 
+    def test_that_passing_ten_results_in_Bar(self):
+        self.assertResultsIn('10', 'Bar')
+
+
 if __name__ == '__main__':
     unittest.main()
