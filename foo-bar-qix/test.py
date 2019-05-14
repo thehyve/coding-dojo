@@ -27,6 +27,9 @@ class FooBarQixTestCase(unittest.TestCase):
     def test_that_passing_six_results_in_Foo(self):
         self.assertResultsIn('6', 'Foo')
 
+    def test_that_passing_seven_results_in_QixQix(self):
+        self.assertResultsIn('7', 'QixQix')
+
     def test_that_passing_nine_results_in_Foo(self):
         self.assertResultsIn('9', 'Foo')
 
