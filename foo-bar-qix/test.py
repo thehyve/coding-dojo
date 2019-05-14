@@ -15,6 +15,15 @@ class FooBarQixTestCase(unittest.TestCase):
     def test_that_passing_two_results_in_two(self):
         self.assertResultsIn('2', '2')
 
+    def test_that_passing_three_results_in_FooFoo(self):
+        self.assertResultsIn('3', 'FooFoo')
+
+    def test_that_passing_four_results_in_four(self):
+        self.assertResultsIn('4', '4')
+
+    def test_that_passing_five_results_in_BarBar(self):
+        self.assertResultsIn('5', 'BarBar')
+
     def test_that_passing_six_results_in_Foo(self):
         self.assertResultsIn('6', 'Foo')
 
