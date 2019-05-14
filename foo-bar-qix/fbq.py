@@ -1,2 +1,2 @@
 def compute(arg):
-    return '1'
+    return arg
