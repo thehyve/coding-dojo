@@ -28,6 +28,8 @@ void test_that_common_case_numbers_get_stringified() {
     assert_string_equal(fizbuzz(1), "1");
     assert_string_equal(fizbuzz(2), "2");
     assert_string_equal(fizbuzz(4), "4");
+    assert_string_equal(fizbuzz(7), "7");
+    assert_string_equal(fizbuzz(8), "8");
 }
 
 void test_that_multiples_of_three_get_fizzed() {
