@@ -6,6 +6,8 @@
 
 char *fizbuzz(int nnn) {
     char *result;
+    char *temp_string = "";
+    //TODO: try: temp_string = !(nnn % 3 == 0) * "Fizz";
     if (nnn % 3 == 0) {
         assert(asprintf(&result, "%s", "Fizz") >= 0);
     } else if (nnn % 5 == 0) {
@@ -47,4 +49,5 @@ int main() {
     test_that_common_case_numbers_get_stringified();
     test_that_multiples_of_three_get_fizzed();
     test_that_multiples_of_five_get_buzzed();
+    assert_string_equal(fizbuzz(15), "FizzBuzz");
 }
