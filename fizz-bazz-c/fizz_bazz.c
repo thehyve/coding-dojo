@@ -19,9 +19,14 @@ void assert_string_equal(char *actual, char *expected) {
     }
 }
 
-int main() {
-    /* TODO: deallocate strings after asserting */
+void test_that_common_case_numbers_get_stringified() {
     assert_string_equal(fizbuzz(1), "1");
     assert_string_equal(fizbuzz(2), "2");
+    assert_string_equal(fizbuzz(4), "4");
+}
+
+int main() {
+    /* TODO: deallocate strings after asserting */
+    test_that_common_case_numbers_get_stringified();
     assert_string_equal(fizbuzz(3), "Fizz");
 }
