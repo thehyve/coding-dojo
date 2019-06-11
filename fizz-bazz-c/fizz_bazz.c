@@ -6,15 +6,12 @@
 
 char *fizbuzz(int nnn) {
     char *result;
-    switch (nnn) {
-        case 3:
-            assert(asprintf(&result, "%s", "Fizz") >= 0);
-            break;
-        case 5:
-            assert(asprintf(&result, "%s", "Buzz") >= 0);
-            break;
-        default:
-            assert(asprintf(&result, "%d", nnn) >= 0);
+    if (nnn % 3 == 0) {
+        assert(asprintf(&result, "%s", "Fizz") >= 0);
+    } else if (nnn % 5 == 0) {
+        assert(asprintf(&result, "%s", "Buzz") >= 0);
+    } else {
+        assert(asprintf(&result, "%d", nnn) >= 0);
     }
     return result;
 }
@@ -33,8 +30,13 @@ void test_that_common_case_numbers_get_stringified() {
     assert_string_equal(fizbuzz(4), "4");
 }
 
+void test_that_multiples_of_three_get_fizzed() {
+    assert_string_equal(fizbuzz(3), "Fizz");
+    assert_string_equal(fizbuzz(6), "Fizz");
+}
+
 int main() {
     test_that_common_case_numbers_get_stringified();
-    assert_string_equal(fizbuzz(3), "Fizz");
+    test_that_multiples_of_three_get_fizzed();
     assert_string_equal(fizbuzz(5), "Buzz");
 }
