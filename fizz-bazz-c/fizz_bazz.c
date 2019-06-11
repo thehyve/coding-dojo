@@ -35,6 +35,7 @@ void test_that_common_case_numbers_get_stringified() {
 void test_that_multiples_of_three_get_fizzed() {
     assert_string_equal(fizbuzz(3), "Fizz");
     assert_string_equal(fizbuzz(6), "Fizz");
+    assert_string_equal(fizbuzz(9), "Fizz");
 }
 
 int main() {
