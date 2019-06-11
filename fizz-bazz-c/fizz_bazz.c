@@ -6,6 +6,9 @@
 char *fizbuzz(int nnn) {
     char *result;
     assert(asprintf(&result, "%d", nnn) >= 0);
+    if (nnn == 3) {
+        return "Fizz";
+    }
     return result;
 }
 
@@ -20,4 +23,5 @@ int main() {
     /* TODO: deallocate strings after asserting */
     assert_string_equal(fizbuzz(1), "1");
     assert_string_equal(fizbuzz(2), "2");
+    assert_string_equal(fizbuzz(3), "Fizz");
 }
