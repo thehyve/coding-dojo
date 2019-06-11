@@ -38,8 +38,13 @@ void test_that_multiples_of_three_get_fizzed() {
     assert_string_equal(fizbuzz(9), "Fizz");
 }
 
+void test_that_multiples_of_five_get_buzzed() {
+    assert_string_equal(fizbuzz(5), "Buzz");
+    assert_string_equal(fizbuzz(10), "Buzz");
+}
+
 int main() {
     test_that_common_case_numbers_get_stringified();
     test_that_multiples_of_three_get_fizzed();
-    assert_string_equal(fizbuzz(5), "Buzz");
+    test_that_multiples_of_five_get_buzzed();
 }
