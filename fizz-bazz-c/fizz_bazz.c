@@ -6,9 +6,9 @@
 
 char *fizbuzz(int nnn) {
     char *result;
-    char *temp_string = "";
-    //TODO: try: temp_string = !(nnn % 3 == 0) * "Fizz";
-    if (nnn % 3 == 0) {
+    if (nnn % 15 == 0) {
+        assert(asprintf(&result, "%s", "FizzBuzz") >= 0);
+    } else if (nnn % 3 == 0) {
         assert(asprintf(&result, "%s", "Fizz") >= 0);
     } else if (nnn % 5 == 0) {
         assert(asprintf(&result, "%s", "Buzz") >= 0);
