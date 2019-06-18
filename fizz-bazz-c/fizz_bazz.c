@@ -13,6 +13,7 @@ void safe_asprintf(char **ret, const char *format, ...) {
 
 char *fizbuzz(int nnn) {
     char *result;
+    //TODO Free the empty string in the heap
     safe_asprintf(&result, "");
     if (nnn % 3 == 0) {
         safe_asprintf(&result, "%s", "Fizz");
