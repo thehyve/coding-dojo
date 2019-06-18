@@ -2,18 +2,28 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
+#include <stdarg.h>
 
+void safe_asprintf(char **ret, const char *format, ...) {
+    va_list ap;
+    va_start(ap, format);
+    assert(vasprintf(ret, format, ap) >= 0);
+    va_end(ap);
+}
 
 char *fizbuzz(int nnn) {
     char *result;
-    if (nnn % 15 == 0) {
-        assert(asprintf(&result, "%s", "FizzBuzz") >= 0);
-    } else if (nnn % 3 == 0) {
-        assert(asprintf(&result, "%s", "Fizz") >= 0);
-    } else if (nnn % 5 == 0) {
-        assert(asprintf(&result, "%s", "Buzz") >= 0);
-    } else {
-        assert(asprintf(&result, "%d", nnn) >= 0);
+    safe_asprintf(&result, "");
+    if (nnn % 3 == 0) {
+        safe_asprintf(&result, "%s", "Fizz");
+    }
+    if (nnn % 5 == 0) {
+        char *d = result;
+        safe_asprintf(&result, "%s%s", result, "Buzz");
+        free(d);
+    }
+    if (strlen(result) == 0) {
+        safe_asprintf(&result, "%d", nnn);
     }
     return result;
 }
