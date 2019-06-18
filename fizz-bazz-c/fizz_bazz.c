@@ -18,6 +18,7 @@ char *fizbuzz(int nnn) {
         safe_asprintf(&result, "%s", "Fizz");
     }
     if (nnn % 5 == 0) {
+        //TODO remove tmp pointer
         char *d = result;
         safe_asprintf(&result, "%s%s", result, "Buzz");
         free(d);
