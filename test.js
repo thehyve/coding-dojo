@@ -7,3 +7,7 @@ describe('Array', function () {
     })
   })
 })
+/*
+TODO: use https://airbnb.io/enzyme/#shallow-rendering to assert react component.
+Shall we use shallow or deep rendering?
+*/
