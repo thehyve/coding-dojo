@@ -1,0 +1,14 @@
+{
+  "name": "minimal-tdd-react-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "standard && node test.js"
+  },
+  "author": "The Hyve Coding Dojo",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "standard": "^12.0.1"
+  }
+}
