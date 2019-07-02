@@ -4,11 +4,12 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "standard && node test.js"
+    "test": "standard && mocha"
   },
   "author": "The Hyve Coding Dojo",
   "license": "UNLICENSED",
   "devDependencies": {
+    "mocha": "^6.1.4",
     "standard": "^12.0.1"
   }
 }
