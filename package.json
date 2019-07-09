@@ -4,12 +4,22 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "standard && mocha"
+    "test": "standard && mocha --require @babel/polyfill --require @babel/register"
   },
   "author": "The Hyve Coding Dojo",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.3",
+    "@babel/register": "^7.4.4",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "mocha": "^6.1.4",
     "standard": "^12.0.1"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }

@@ -1,5 +1,10 @@
 /* eslint-env mocha */
-var assert = require('assert')
+import { configure, shallow, mount, render } from 'enzyme'
+import Adapter from 'enzyme-adapter-react-16'
+import assert from 'assert'
+
+configure({ adapter: new Adapter() })
+
 describe('Array', function () {
   describe('#indexOf()', function () {
     it('should return -1 when the value is not present', function () {
