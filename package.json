@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "standard && mocha --require @babel/polyfill --require @babel/register"
+    "test": "standard && mocha --require @babel/polyfill --require @babel/register test.js",
+    "learning-test": "mocha --require @babel/polyfill --require @babel/register learning-test.js"
   },
   "author": "The Hyve Coding Dojo",
   "license": "UNLICENSED",
