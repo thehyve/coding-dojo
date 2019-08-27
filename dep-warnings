@@ -1,0 +1,15 @@
+When installing basic dependencies:
+npm WARN deprecated @babel/polyfill@7.4.4: 🚨 As of Babel 7.4.0, this
+npm WARN deprecated package has been deprecated in favor of directly
+npm WARN deprecated including core-js/stable (to polyfill ECMAScript
+npm WARN deprecated features) and regenerator-runtime/runtime
+npm WARN deprecated (needed to use transpiled generator functions):
+npm WARN deprecated
+npm WARN deprecated   > import "core-js/stable";
+npm WARN deprecated   > import "regenerator-runtime/runtime";
+npm WARN deprecated circular-json@0.3.3: CircularJSON is in maintenance only, flatted is its successor.
+
+When installing bio-pv:
+npm WARN deprecated minimatch@2.0.10: Please update to minimatch 3.0.2 or higher to avoid a RegExp DoS issue
+npm WARN deprecated ecstatic@0.5.8: https://github.com/jfhbrook/node-ecstatic/issues/259
+npm WARN deprecated swig@1.4.2: This package is no longer maintained
