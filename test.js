@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import { configure, shallow, mount, render } from 'enzyme'
+import { configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import assert from 'assert'
 
