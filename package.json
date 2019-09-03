@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "standard && mocha --require @babel/polyfill --require @babel/register test.js",
-    "learning-test": "mocha --require @babel/polyfill --require @babel/register learning-test.js"
+    "learning-test": "mocha --require setupwindow4tests.js --require @babel/polyfill --require @babel/register learning-test.js"
   },
   "author": "The Hyve Coding Dojo",
   "license": "UNLICENSED",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "bio-pv": "^1.8.1",
+    "jsdom": "^15.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

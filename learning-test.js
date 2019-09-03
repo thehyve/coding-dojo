@@ -10,7 +10,8 @@ describe('pv', function () {
         antialias: true,
         quality: 'medium'
       }
-      var container = document.getElementById('viewer')
+      var container = document.createElement('div')
+      //document.body.appendChild(container)
       pv.Viewer(container, options)
     })
   })
