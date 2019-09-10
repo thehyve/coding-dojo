@@ -11,7 +11,7 @@ describe('pv', function () {
         quality: 'medium'
       }
       var container = document.createElement('div')
-      //document.body.appendChild(container)
+      document.body.appendChild(container)
       pv.Viewer(container, options)
     })
   })
