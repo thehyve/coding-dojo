@@ -15,7 +15,7 @@ describe('a newly created element', function () {
 
 describe('pv', function () {
   describe('#Viewer()', function () {
-    it('adds an element to the DOM', function () {
+    it('adds an element to the container it has been passed', function () {
       var options = {
         width: 600,
         height: 600,
@@ -28,6 +28,9 @@ describe('pv', function () {
       pv.Viewer(container, options)
 
       assert.strictEqual(container.childElementCount, 1)
+    })
+    it('adds a canvas element', function () {
+      assert.fail()
     })
   })
 })
